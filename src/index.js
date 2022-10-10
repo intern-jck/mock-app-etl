@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const {addProducts, addFeatures, addStyles, addSkus, addPhotos} = require('./products/productsETL.js');
+const {addQuestions, addAnswers} = require('./questions/questionsETL.js');
 // const { addReviews, addPhotos, addCharacteristics, updateCharacteristics } = require('./reviews/reviewsETL.js');
 
 // Location of raw csv data.
@@ -8,20 +9,21 @@ const productsCSV = '../../data/test/products/products10k.csv';
 const featuresCSV = '../../data/test/products/features10k.csv';
 const stylesCSV = '../../data/test/products/styles10k.csv';
 const skusCSV = '../../data/test/products/skus10k.csv';
-const photosCSV = '../../data/test/products/photos10k.csv';
+const productPhotosCSV = '../../data/test/products/photos10k.csv';
 
 //Questions
+const questionsCSV = '../../data/test/questions/questions10k.csv';
+const answersCSV = '../../data/test/questions/answers10k.csv';
+const answerPhotosCSV = '../../data/test/questions/answers_photos10k.csv';
 
 //Related
+const relatedCSV = '../../data/test/related/related10k.csv';
 
 // Reviews
-// Location of raw csv data.
-// const reviewsCSV = '../data/test/products/reviews/reviews10k.csv';
-// const photosCSV = '../data/test/products/reviews/reviews_photos10k.csv';
-// const characteristicsCSV = '../data/test/products/characteristics10k';
-// const characteristicReviewsCSV = '../data/test/products/characteristic_reviews10k';
-
-//Cart
+const reviewsCSV = '../data/test/reviews/reviews10k.csv';
+const reviewPhotosCSV = '../data/test/reviews/reviews_photos10k.csv';
+const characteristicsCSV = '../data/test/characteristics10k';
+const characteristicReviewsCSV = '../data/test/characteristic_reviews10k';
 
 // Connect to local db using user info.
 mongoose.connect('mongodb://127.0.0.1:27017/sdc',
@@ -38,6 +40,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/sdc',
 // addStyles(stylesCSV);
 // addSkus(skusCSV);
 // addPhotos(photosCSV);
+
+// Build Questions Collection
+// addQuestions(questionsCSV);
+// addAnswers(answersCSV);
 
 // Build Reviews Collection
 // addReviews(reviewsCSV);
