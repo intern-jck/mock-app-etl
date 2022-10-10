@@ -1,7 +1,7 @@
 {
-  "name": "etl",
+  "name": "sdc-etl",
   "version": "1.0.0",
-  "description": "",
+  "description": "Full implentation of ETL scripts for Hack Reactor SDC Project.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
