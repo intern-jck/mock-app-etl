@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const {addProducts, addFeatures, addStyles, addSkus, addPhotos} = require('./products/productsETL.js');
-const {addQuestions, addAnswers} = require('./questions/questionsETL.js');
+const {addQuestions, addAnswers, addAnswerPhotos} = require('./questions/questionsETL.js');
 // const { addReviews, addPhotos, addCharacteristics, updateCharacteristics } = require('./reviews/reviewsETL.js');
 
 // Location of raw csv data.
@@ -35,32 +35,43 @@ mongoose.connect('mongodb://127.0.0.1:27017/mockapp',
   .catch((err) => (console.log(`MongoDB ERR ${err}`)));
 
 // Build Products Collection
-addProducts(productsCSV)
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Products`)
-  return addFeatures(featuresCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Features`)
-  return addStyles(stylesCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Styles`)
-  return addSkus(skusCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Skus`)
-  return addPhotos(productPhotosCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Photos`)
-  console.log('Products Collection Complete!');
-})
-.catch((error) => (console.log(error)));
+// addProducts(productsCSV)
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Products`)
+//   return addFeatures(featuresCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Features`)
+//   return addStyles(stylesCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Styles`)
+//   return addSkus(skusCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Skus`)
+//   return addPhotos(productPhotosCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Photos`)
+//   console.log('Products Collection Complete!');
+// })
+// .catch((error) => (console.log(error)));
 
 // Build Questions Collection
-// addQuestions(questionsCSV);
-// addAnswers(answersCSV);
+addQuestions(questionsCSV)
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Questions`)
+  return addAnswers(answersCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Answers`)
+  return addAnswerPhotos(answerPhotosCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Answer Photos`)
+})
+.catch((error) => (console.log(error)));
 
 // Build Reviews Collection
 // addReviews(reviewsCSV);
