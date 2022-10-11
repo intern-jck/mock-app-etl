@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const ProductModel = new Schema({
-  product_id: String,
+  product_id: Number,
   product_name: String,
   slogan: String,
   description: String,
@@ -16,15 +16,15 @@ const ProductModel = new Schema({
   ],
   styles: [
     {
-      style_id: String,
+      style_id: Number,
       style_name: String,
       sale_price: String,
       original_price: String,
-      default_style: String,
+      default_style: Boolean,
       skus: [
         {
           size: String,
-          quantity: String,
+          quantity: Number,
         }
       ],
       photos: [

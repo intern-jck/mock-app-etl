@@ -12,7 +12,6 @@ const reviewChracteristicsLength = 19327575;
 
 const Review = require('./ReviewModel.js');
 
-
 const addReviews = (csvPath) => {
 
   let operations = [];
@@ -41,7 +40,7 @@ const addReviews = (csvPath) => {
         'update': {
           '$push': {
             'results': {
-              'id':  row.id,
+              'id':  parseInt(row.id),
               'rating':  row.rating,
               'date': row.date,
               'summary': row.summary,
@@ -204,7 +203,6 @@ const updateCharacteristics = (csvPath) => {
   });
 
 };
-
 
 module.exports = {
   addReviews,

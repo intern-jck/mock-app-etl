@@ -26,7 +26,7 @@ const characteristicsCSV = '../data/test/characteristics10k';
 const characteristicReviewsCSV = '../data/test/characteristic_reviews10k';
 
 // Connect to local db using user info.
-mongoose.connect('mongodb://127.0.0.1:27017/sdc',
+mongoose.connect('mongodb://127.0.0.1:27017/mockapp',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -34,12 +34,29 @@ mongoose.connect('mongodb://127.0.0.1:27017/sdc',
   .then(() => (console.log(`MongoDB Connected!`)))
   .catch((err) => (console.log(`MongoDB ERR ${err}`)));
 
-  // Build Productions Collection
-// addProducts(productsCSV);
-// addFeatures(featuresCSV);
-// addStyles(stylesCSV);
-// addSkus(skusCSV);
-// addPhotos(photosCSV);
+// Build Products Collection
+addProducts(productsCSV)
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Products`)
+  return addFeatures(featuresCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Features`)
+  return addStyles(stylesCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Styles`)
+  return addSkus(skusCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Skus`)
+  return addPhotos(productPhotosCSV);
+})
+.then((rowCount) => {
+  console.log(`Added ${rowCount} Photos`)
+  console.log('Products Collection Complete!');
+})
+.catch((error) => (console.log(error)));
 
 // Build Questions Collection
 // addQuestions(questionsCSV);
