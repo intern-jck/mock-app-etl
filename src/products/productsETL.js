@@ -26,7 +26,7 @@ const addProducts = (csvPath) => {
           'filter': {'product_id': productId},
           'update': {
             'product_id': productId,
-            'product_name': row.name,
+            'name': row.name,
             'slogan': row.slogan,
             'description': row.description,
             'category': row.category,
@@ -55,7 +55,7 @@ const addProducts = (csvPath) => {
 
 };
 
-const addFeatures = (csvPath) => {
+const addProductFeatures = (csvPath) => {
   let operations = [];
   const t0 = performance.now();
 
@@ -97,7 +97,7 @@ const addFeatures = (csvPath) => {
   });
 };
 
-const addStyles = (csvPath) => {
+const addProductStyles = (csvPath) => {
   let operations = [];
   const t0 = performance.now();
   return new Promise((resolve, reject) => {
@@ -142,7 +142,7 @@ const addStyles = (csvPath) => {
   });
 };
 
-const addSkus = (csvPath) => {
+const addProductSkus = (csvPath) => {
   let operations = [];
   const t0 = performance.now();
   return new Promise((resolve, reject) => {
@@ -183,7 +183,7 @@ const addSkus = (csvPath) => {
   });
 };
 
-const addPhotos = (csvPath) => {
+const addProductPhotos = (csvPath) => {
   let operations = [];
   const t0 = performance.now();
   return new Promise((resolve, reject) => {
@@ -224,8 +224,8 @@ const addPhotos = (csvPath) => {
 
 module.exports = {
   addProducts,
-  addFeatures,
-  addStyles,
-  addSkus,
-  addPhotos,
+  addProductFeatures,
+  addProductStyles,
+  addProductSkus,
+  addProductPhotos,
 };

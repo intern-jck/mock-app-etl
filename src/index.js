@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const {addProducts, addFeatures, addStyles, addSkus, addPhotos} = require('./products/productsETL.js');
+const {connect} = require('mongoose');
+const {addProducts, addProductFeatures, addProductStyles, addProductSkus, addProductPhotos} = require('./products/productsETL.js');
 const {addQuestions, addAnswers, addAnswerPhotos} = require('./questions/questionsETL.js');
-// const { addReviews, addPhotos, addCharacteristics, updateCharacteristics } = require('./reviews/reviewsETL.js');
+const { addReviews, addReviewPhotos, addReviewCharacteristics, updateReviewCharacteristics } = require('./reviews/reviewsETL.js');
 
 // Location of raw csv data.
 // Products
@@ -20,13 +20,13 @@ const answerPhotosCSV = '../../data/test/questions/answers_photos10k.csv';
 const relatedCSV = '../../data/test/related/related10k.csv';
 
 // Reviews
-const reviewsCSV = '../data/test/reviews/reviews10k.csv';
-const reviewPhotosCSV = '../data/test/reviews/reviews_photos10k.csv';
-const characteristicsCSV = '../data/test/characteristics10k';
-const characteristicReviewsCSV = '../data/test/characteristic_reviews10k';
+const reviewsCSV = '../../data/test/reviews/reviews10k.csv';
+const reviewPhotosCSV = '../../data/test/reviews/reviews_photos10k.csv';
+const characteristicsCSV = '../../data/test/reviews/characteristics10k.csv';
+const characteristicReviewsCSV = '../../data/test/reviews/characteristic_reviews10k.csv';
 
 // Connect to local db using user info.
-mongoose.connect('mongodb://127.0.0.1:27017/mockapp',
+connect('mongodb://127.0.0.1:27017/mockapp',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -59,23 +59,40 @@ mongoose.connect('mongodb://127.0.0.1:27017/mockapp',
 // .catch((error) => (console.log(error)));
 
 // Build Questions Collection
-addQuestions(questionsCSV)
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Questions`)
-  return addAnswers(answersCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Answers`)
-  return addAnswerPhotos(answerPhotosCSV);
-})
-.then((rowCount) => {
-  console.log(`Added ${rowCount} Answer Photos`)
-})
-.catch((error) => (console.log(error)));
+// Use for testing...
+// addQuestions(questionsCSV)
+// addAnswers(answersCSV);
+// addAnswerPhotos(answerPhotosCSV);
+
+// addQuestions(questionsCSV)
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Questions`)
+//   return addAnswers(answersCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Answers`)
+//   return addAnswerPhotos(answerPhotosCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Answer Photos`)
+// })
+// .catch((error) => (console.log(error)));
 
 // Build Reviews Collection
-// addReviews(reviewsCSV);
-// addPhotos(photosCSV);
-// addCharacteristics(characteristicsCSV);
-// Used to add meta data values.
-// updateCharacteristics(characteristicReviewsCSV);
+// addReviews(reviewsCSV)
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Reviews`)
+//   return addReviewPhotos(reviewPhotosCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Review Photos`)
+//   return addReviewCharacteristics(characteristicsCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Added ${rowCount} Review Characteristics`)
+//   updateReviewCharacteristics(characteristicReviewsCSV);
+// })
+// .then((rowCount) => {
+//   console.log(`Updated ${rowCount} Review Characteristics`)
+// })
+// .catch((error) => (console.log(error)));

@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const {Schema, model} = require('mongoose');
 
 const QuestionModel = new Schema({
-  product_id: String,
+  product_id: Number,
   results: [{
       question_id: Number,
       question_body: String,
@@ -12,8 +11,10 @@ const QuestionModel = new Schema({
       question_helpfulness: Number,
       reported: Boolean,
       answer_ids: []
+      // answer_ids: [{type: Schema.Types.ObjectId, ref: 'Answer'}]
+
     }]
 });
 
-const Question = mongoose.model('Questions', QuestionModel);
+const Question = model('Questions', QuestionModel);
 module.exports = Question;

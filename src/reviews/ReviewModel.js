@@ -1,21 +1,20 @@
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const {Schema, model} = require('mongoose');
 
 const ReviewSchema = new Schema({
   product_id: Number,
   results: [{
-    id:  Number,
+    review_id:  Number,
     rating:  Number,
     date: Date,
     summary: String,
     body: String,
-    recommend: Boolean,
-    reported: Boolean,
     reviewer_name: String,
     reviewer_email: String,
     response: String,
     helpfulness: Number,
-    photos: [{ id: String, url: String }],
+    recommend: Boolean,
+    reported: Boolean,
+    photos: [{ id: Number, url: String }],
   }],
   meta: {
     ratings: {
@@ -33,5 +32,5 @@ const ReviewSchema = new Schema({
   }
 });
 
-const Review = mongoose.model('Reviews', ReviewSchema);
+const Review = model('Reviews', ReviewSchema);
 module.exports = Review;
