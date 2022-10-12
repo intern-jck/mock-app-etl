@@ -1,22 +1,14 @@
-# SDC-API
-## An implentation of the entire backend API for Hack Reactor's System Design Capstone Project
+# mock-app-etl
+## A collection of ETL scripts to build a MongoDB database
 
-Use ETL scripts to build database:
+### Builds the following collections:
 
-
-TODO:
-
-* Create Models
-  * ~~Products~~
-  * Questions
-  * Related
-  * ~~Reviews~~
-
-* Create ETL Scripts
-  * ~~Products~~
-  * Questions
-  * Related
-  * ~~Reviews~~
+* Products
+* Questions
+* Answers
+* Reviews
+* Related
+* Cart
 
 ### Overview
 
@@ -34,27 +26,19 @@ npm install
 
 #### ETL Script Process
 Process is the same for each csv.
-First, create an array of operations to send to our MongoDB using Mongoose.
-Then, open csv as a read stream,
-read each line of csv,
-parse each line,
-create operation to update one document,
-add operation to array,
-check length of array (this serves as a buffer for bulk operations)
-then perform all operations in array if length is reached.
 
-This whole process will add documents to your local MongoDB
-based on operations set in functions and csv data given.
-Time is tracked once the buffer limit has been reached
-to keep track of how long things are taking.
+* Create an array of operations to send to our MongoDB using Mongoose.
+* open csv as a read stream,
+* Read each line of csv,
+* Parse each line,
+* Create operation to update one document,
+* Add operation to array of operations to serve as a buffer
+* Once buffer limit is reached, bulkWrite operations array
+* Repeat until entire CSV file is read
 
-The entire process should take about 20 - 30 minutes based on your
-system's hardware.  However, using the basic system requirements of the course,
-should complete the whole ETL process in just about 30 - 40 minutes.
+The scripts use promises to build each collection in steps based on the CSV data.
+First the main document is created, then updated with relevant data.
 
-Keep track of your system's resources to during the process to
-see how much RAM is being used.
+Uncomment the collection's promise chain to build the given collection.
 
-Note the console logs in the script.  They are placed only where the buffer limit has been reached.
-Removing them will only improve performance in negligible amounts.
-It is useful to see them to keep track of progress.
+If you are feeling confident, the entire database can be built by refactoring the promise chain to include all of the ETL functions.  Be careful though, there are error messages coded in but need updating to get specific error info.  It's best to simply build each collection one at a time.
